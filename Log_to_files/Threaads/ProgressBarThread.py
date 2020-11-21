@@ -1,3 +1,4 @@
+import sys
 import subprocess
 import time
 from threading import Thread
@@ -24,11 +25,12 @@ class ProgressBarThread(QThread):
 
     def run(self):
         count = SF.count_value
-        thread1 = Thread(target = SF.SplitFiles, name="fuck", daemon = True, args=(self.path, "txt",  str(time.time())),)
+        thread1 = Thread(target = SF.SplitFiles, name="fuck", daemon = True, args=(self.path,))
         thread1.start()
 
         while (count != -1):
             count = SF.count_value
+            time.sleep(1)
             self.countChanged.emit(count)
             check = SF.get_check()
             if (check == False or check == True):
@@ -74,7 +76,13 @@ class ProgressBarThread(QThread):
                 "Maybe your file has not compability formating?"
             )
         elif (check == True):
-            subprocess.Popen("explorer \"{}\"".format(folder))
+
+            # --------ATTENTION!----------
+            # ---CHECK OS TYPE------------
+            if (sys.platform == 'win32'):
+                subprocess.Popen("explorer \"{}\"".format(folder))
+            else:
+                pass
             QMessageBox.information(None, "Caution!",
                                     "Operation was canceled.\nBut you can check, what had been done!"
             )

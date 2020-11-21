@@ -46,7 +46,10 @@ class class_main_design(QtWidgets.QMainWindow, Ui_MainWindow):
 #-----Check type of file------#
 #-----Get chechBox value------# 
 
+
     def CheckFileds(self):
+        self.lineEdit.setText(self.lineEdit.text().replace("\"", ""))
+        self.lineEdit.setText(self.lineEdit.text().replace("'", ""))
         path = Path(self.lineEdit.text())
         typee = path.suffix
         filter = "(\.log)|(\.txt)|(\.TXT)|(\.LOG)$"
@@ -70,7 +73,7 @@ class class_main_design(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def Make_Files(self):
         if (self.CheckFileds() == True):
-            progwin = self.openProgBar()
+            self.openProgBar()
 
 
 

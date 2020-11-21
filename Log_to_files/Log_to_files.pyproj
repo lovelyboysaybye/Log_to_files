@@ -34,18 +34,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Design_ui\Ui_files\Design.py" />
-    <Compile Include="LogicClass.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Log_to_files.py" />
     <Compile Include="Design_ui\Ui_files\progressbar.py" />
     <Compile Include="SepareteFIle.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="test.py">
+    <Compile Include="Threaads\ProgressBarThread.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Threaads\ProgressBarThread.py">
+    <Compile Include="Threaads\QuestionThread.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

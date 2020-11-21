@@ -1,9 +1,12 @@
 import time
+from threading import Thread
+
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from Design_ui.Ui_files.progressbar import Ui_Dialog
 
 from Threaads.ProgressBarThread import ProgressBarThread
+from Threaads.QuestionThread import Start_Thread
 from Design_ui.Abstract.QuestionWindow import QuestionWindow
 
 class class_example(QtWidgets.QDialog, Ui_Dialog):
@@ -14,7 +17,7 @@ class class_example(QtWidgets.QDialog, Ui_Dialog):
         self.setupUi(self)
         self.progressBar.setValue(0)
 
-        self.setWindowFlags(Qt.WindowStaysOnTopHint)
+        #self.setWindowFlags(Qt.WindowStaysOnTopHint)
         self.win = None
     
 
@@ -35,20 +38,14 @@ class class_example(QtWidgets.QDialog, Ui_Dialog):
         self.progressBar.setValue(value)
 
 
+
     #-----Custom close event.------#
     #-----Ask before closing-------#
 
     def closeEvent(self, event):
         print("value of end:{}".format(ProgressBarThread.check_if_it_end))
+        
         if (ProgressBarThread.check_if_it_end == False):
-            #self.reply = QMessageBox.question(None, 'Process launched.', "Process isn't finished, yet.\n Are you sure?",
-            #                            QMessageBox.Yes, QMessageBox.No)
-            #self.event = event
-            #if (self.reply == QMessageBox.Yes):
-            #    set_check_True()
-            #    self.event.accept()
-            #else:
-            #    self.event.ignore()
             self.win = QuestionWindow(event)
             self.win.show()
             event.ignore()
